@@ -1,3 +1,4 @@
+import os
 import webbrowser
 
 from fpdf import FPDF
@@ -36,6 +37,9 @@ class PdfReport:
             flatmate_needs_to_pay = str(round(flatmate_instance.pays(bill, flatmates), 2))
             print(flatmate_instance.name, " pays: ", flatmate_needs_to_pay)
             pdf.cell(w=0, h=25, txt=flatmate_needs_to_pay, border=0, ln=1)
+
+        # Change directory to files
+        os.chdir("files")
 
         # Generate PDF
         pdf.output(self.filename)
