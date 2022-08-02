@@ -1,4 +1,5 @@
 import os
+import platform
 import webbrowser
 
 from fpdf import FPDF
@@ -46,7 +47,9 @@ class PdfReport:
 
         # Open the pdf automatically
         # If Windows
-        webbrowser.open(self.filename)
+        if platform.system() == 'Windows':
+            webbrowser.open(self.filename)
 
         # If Mac or Linux
-        # webbrowser.open('file://' + os.path.realpath(self.filename))
+        else:
+            webbrowser.open('file://' + os.path.realpath(self.filename))

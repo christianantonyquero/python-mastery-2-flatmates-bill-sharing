@@ -39,6 +39,7 @@ pip install -r requirements.txt
 ![img.png](files/readme_files/img.png)
 
 ## Important:
+Depending on the system you are using adjust accordingly.
 Windows
 ```
 webbrowser.open(self.filename)

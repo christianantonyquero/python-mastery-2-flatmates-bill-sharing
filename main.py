@@ -13,7 +13,7 @@ flatmate_list = []
 
 for number in range(1, number_of_flat_mates + 1):
     name = input("Enter flatmate " + str(number) + " name: ")
-    days_in_house = int(input("Enter how many days" + name + "stayed in the house during the bill period: "))
+    days_in_house = int(input("Enter how many days " + name + " stayed in the house during the bill period: "))
 
     flatmate = Flatmate(name, days_in_house)
     flatmate_list.append(flatmate)
