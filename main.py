@@ -22,9 +22,10 @@ class Flatmate:
         self.name = name
         self.days_in_house = days_in_house
 
-    def pays(self, bill, other_flatmate):
+    def pays(self, bill, flatmates):
         flatmates_total_days_in_house = 0
-        flatmates_total_days_in_house += other_flatmate.days_in_house
+        for flatmate in flatmates:
+            flatmates_total_days_in_house += flatmate.days_in_house
         weight = self.days_in_house / (self.days_in_house + flatmates_total_days_in_house)
         to_pay = bill.amount * weight
         return to_pay
@@ -52,9 +53,10 @@ class PdfReport:
         pdf.cell(w=100, h=40, txt="Period", border=1)
         pdf.cell(w=0, h=40, txt=bill.period, border=1, ln=1)
 
-        # Insert flatmate
-        pdf.cell(w=200, h=40, txt=flatmates.name, border=1)
-        pdf.cell(w=200, h=40, txt=str(flatmates.days_in_house), border=1, ln=1)
+        # Insert flatmates
+        for flatmate_instance in flatmates:
+            pdf.cell(w=200, h=40, txt=flatmate_instance.name, border=1)
+            pdf.cell(w=200, h=40, txt=str(flatmate_instance.days_in_house), border=1, ln=1)
 
         # Generate PDF
         pdf.output(self.filename)
@@ -63,8 +65,12 @@ class PdfReport:
 the_bill = Bill(amount=120, period="April 2021")
 john = Flatmate(name="John", days_in_house=20)
 marry = Flatmate(name="Marry", days_in_house=25)
+chris = Flatmate(name="Chris", days_in_house=15)
 
-print(john.name, " pays: ", john.pays(bill=the_bill, other_flatmate=marry))
+flatmate_list = [john, marry, chris]
+
+for flatmate in flatmate_list:
+    print(flatmate.name, " pays: ", flatmate.pays(bill=the_bill, flatmates=flatmate_list))
 
 pdf_report = PdfReport(filename="Report1.pdf")
-pdf_report.generate(john, the_bill)
+pdf_report.generate(flatmate_list, the_bill)
