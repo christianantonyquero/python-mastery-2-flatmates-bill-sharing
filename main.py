@@ -77,5 +77,5 @@ flatmate_list = [john, marry, chris]
 for flatmate in flatmate_list:
     print(flatmate.name, " pays: ", flatmate.pays(bill=the_bill, flatmates=flatmate_list))
 
-pdf_report = PdfReport(filename="Report1.pdf")
+pdf_report = PdfReport(filename="Report.pdf")
 pdf_report.generate(flatmate_list, the_bill)
