@@ -50,18 +50,25 @@ class PdfReport:
         pdf = FPDF(orientation='P', unit='pt', format='A4')
         pdf.add_page()
 
+        # Add icon
+        pdf.image("./files/house.png", w=40, h=40)
+
         # Insert Title
-        pdf.set_font(family='Times', size=24, style='B')
-        pdf.cell(w=0, h=80, txt="Flatmates Bill", border=1, align='C', ln=1)
+        pdf.set_font(family='Times', size=14, style='B')
+        pdf.cell(w=0, h=80, txt="Flatmates Bill", border=0, align='C', ln=1)
 
         # Insert Period label and value
-        pdf.cell(w=100, h=40, txt="Period", border=1)
-        pdf.cell(w=0, h=40, txt=bill.period, border=1, ln=1)
+        pdf.cell(w=100, h=40, txt="Period", border=0)
+        pdf.cell(w=0, h=40, txt=bill.period, border=0, ln=1)
 
         # Insert flatmates
+        pdf.set_font(family='Times', size=12)
         for flatmate_instance in flatmates:
-            pdf.cell(w=200, h=40, txt=flatmate_instance.name, border=1)
-            pdf.cell(w=200, h=40, txt=str(flatmate_instance.days_in_house), border=1, ln=1)
+            pdf.cell(w=100, h=25, txt=flatmate_instance.name, border=0)
+
+            flatmate_needs_to_pay = str(round(flatmate_instance.pays(bill, flatmates), 2))
+            print(flatmate_instance.name, " pays: ", flatmate_needs_to_pay)
+            pdf.cell(w=0, h=25, txt=flatmate_needs_to_pay, border=0, ln=1)
 
         # Generate PDF
         pdf.output(self.filename)
@@ -73,9 +80,6 @@ marry = Flatmate(name="Marry", days_in_house=25)
 chris = Flatmate(name="Chris", days_in_house=15)
 
 flatmate_list = [john, marry, chris]
-
-for flatmate in flatmate_list:
-    print(flatmate.name, " pays: ", flatmate.pays(bill=the_bill, flatmates=flatmate_list))
 
 pdf_report = PdfReport(filename="Report.pdf")
 pdf_report.generate(flatmate_list, the_bill)
