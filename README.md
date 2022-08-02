@@ -36,7 +36,7 @@ How to install requirements:
 pip install -r requirements.txt
 ```
 
-![img.png](img.png)
+![img.png](files/readme_files/img.png)
 
 ## Important:
 Windows
@@ -50,9 +50,9 @@ webbrowser.open('file://' + os.path.realpath(self.filename))
 
 # Output:
 Terminal:
-![img_1.png](img_1.png)
+![img_1.png](files/readme_files/img_1.png)
 File:
 filename: July 2022_Report.pdf
-![img_2.png](img_2.png)
+![img_2.png](files/readme_files/img_2.png)
 
 Author: [Christian Antony Quero](https://www.linkedin.com/in/christianquero/)
