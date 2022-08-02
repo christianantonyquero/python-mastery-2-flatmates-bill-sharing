@@ -38,5 +38,14 @@ pip install -r requirements.txt
 
 ![img.png](img.png)
 
+## Important:
+Windows
+```
+webbrowser.open(self.filename)
+```
+Mac or Linux
+```
+webbrowser.open('file://' + os.path.realpath(self.filename))
+```
 
 Author: [Christian Antony Quero](https://www.linkedin.com/in/christianquero/)

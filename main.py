@@ -1,3 +1,4 @@
+import webbrowser
 from fpdf import FPDF
 
 
@@ -72,6 +73,13 @@ class PdfReport:
 
         # Generate PDF
         pdf.output(self.filename)
+
+        # Open the pdf automatically
+        # If Windows
+        webbrowser.open(self.filename)
+
+        # If Mac or Linux
+        # webbrowser.open('file://' + os.path.realpath(self.filename))
 
 
 the_bill = Bill(amount=120, period="April 2021")
