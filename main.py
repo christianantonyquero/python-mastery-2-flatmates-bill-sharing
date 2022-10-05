@@ -1,6 +1,6 @@
 from bill import Bill
 from flatmate import Flatmate
-from reports import PdfReport
+from reports import PdfReport, FileSharer
 
 # Enter bill information
 bill_amount = float(input("Hey user, enter the bill amount: "))
@@ -20,3 +20,6 @@ for number in range(1, number_of_flat_mates + 1):
 
 pdf_report = PdfReport(filename=f"{the_bill.period}_Report.pdf")
 pdf_report.generate(flatmate_list, the_bill)
+
+file_sharer = FileSharer(filepath=pdf_report.filename)
+print(file_sharer.share())
